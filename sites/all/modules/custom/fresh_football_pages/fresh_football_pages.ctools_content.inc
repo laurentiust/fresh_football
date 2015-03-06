@@ -37,9 +37,9 @@ function fresh_football_pages_default_ctools_custom_content() {
     'admin_title' => '',
     'title' => '',
     'body' => '<?php
-print \'<p><a href="javascript:;" class="button login">Login</a></p>\';
-print \'<p><a href="javascript:;" class="button register">Register</a></p>\';
-print \'<p><a href="javascript:;" class="button forgot-password">Forgot password</a></p>\';
+print \'<p><a href="javascript:;" class="btn btn-default login">Login</a></p>\';
+print \'<p><a href="javascript:;" class="btn btn-default register">Register</a></p>\';
+print \'<p><a href="javascript:;" class="btn btn-default forgot-password">Forgot password</a></p>\';
  $register_form = drupal_get_form(\'user_register_form\');
  $login_form = drupal_get_form(\'user_login\');
  $pass_form = drupal_get_form(\'fresh_football_pass_form\');
