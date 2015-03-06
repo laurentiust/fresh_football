@@ -24,6 +24,9 @@ function fresh_football_enable() {
   drupal_flush_all_caches();
 }
 
+/**
+ * Add the twilio and rules module to the site.
+ */
 function fresh_football_update_7001() {
   module_enable(array('twilio', 'rules_admin'));
 }
