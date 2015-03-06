@@ -1,0 +1,25 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for 7Digital.
+ *
+ * @ingroup 7Digital
+ */
+/**
+ * Implements hook_enable().
+ */
+function fresh_football_enable() {
+  // Disable modules.
+  $modules_to_be_disabled = array(
+    'toolbar',
+    'color',
+    'overlay',
+    'comment',
+    'help',
+    'search',
+  );
+  module_disable($modules_to_be_disabled);
+
+  // Clear all of the caches.
+  drupal_flush_all_caches();
+}

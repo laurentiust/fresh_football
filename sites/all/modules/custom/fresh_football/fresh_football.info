@@ -1,0 +1,19 @@
+name = Freshbyte's Football
+description = A module that will handle all custom functionalities for our football site ;)
+core = 7.x
+version = "7.x-1.0"
+core = "7.x"
+
+project = "FreshFTBL"
+package = FreshFTBL
+
+dependencies[] = module_filter
+dependencies[] = views_ui
+dependencies[] = panels
+dependencies[] = wysiwyg
+dependencies[] = features
+dependencies[] = features_diff
+dependencies[] = strongarm
+dependencies[] = context
+dependencies[] = page_manager
+dependencies[] = admin_menu_toolbar
