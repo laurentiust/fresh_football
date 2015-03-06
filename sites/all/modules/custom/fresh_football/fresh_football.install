@@ -39,3 +39,12 @@ function fresh_football_update_7002() {
   module_enable(array('fresh_football_general_settings'));
   drupal_set_message('Ends update ' . __FUNCTION__);
 }
+
+/**
+ * Enable the home page for our site.
+ */
+function fresh_football_update_7003() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  module_enable(array('fresh_football_pages'));
+  drupal_set_message('Ends update ' . __FUNCTION__);
+}
