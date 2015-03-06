@@ -32,7 +32,7 @@ function fresh_football_update_7001() {
 }
 
 /**
- * Add the twilio and rules module to the site.
+ * Enable the subtheme for our site.
  */
 function fresh_football_update_7002() {
   drupal_set_message('Start update ' . __FUNCTION__);
