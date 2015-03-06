@@ -30,3 +30,12 @@ function fresh_football_enable() {
 function fresh_football_update_7001() {
   module_enable(array('twilio', 'rules_admin'));
 }
+
+/**
+ * Add the twilio and rules module to the site.
+ */
+function fresh_football_update_7002() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  module_enable(array('fresh_football_general_settings'));
+  drupal_set_message('Ends update ' . __FUNCTION__);
+}

@@ -1,0 +1,9 @@
+name = fresh_football_general_settings
+core = 7.x
+package = FreshFTBL
+dependencies[] = ctools
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[variable][] = theme_default
+features[variable][] = theme_fresh_football_theme_settings
