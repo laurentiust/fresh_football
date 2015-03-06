@@ -1,0 +1,24 @@
+<?php
+/**
+ * @author Andrei Rusu <andrei.rusu@freshbyteinc.com>.
+ */
+
+
+/**
+ * @param $form
+ * @param $form_state
+ */
+function fresh_users_form_user_register_form_alter(&$form, &$form_state) {
+    $form['#validate'][] = 'fresh_users_register_validate';
+}
+
+/**
+ * Additional handler for user_register_form form validation.
+ */
+function fresh_users_register_validate($form, &$form_state) {
+
+    if (!preg_match('/^[0-9]{10}$/', $form_state['values']['field_phone'][LANGUAGE_NONE][0]['value'])) {
+        form_set_error('field_phone', t('Phone is required and it must be of 10 digits'));
+    }
+
+}

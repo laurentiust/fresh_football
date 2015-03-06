@@ -1,0 +1,21 @@
+name = Freshbyte's Football Users
+description = A module that will handle user functionality
+core = 7.x
+version = "7.x-1.0"
+core = "7.x"
+
+project = "FreshFTBL"
+package = FreshFTBL
+
+dependencies[] = fresh_football
+dependencies[] = entity
+dependencies[] = features
+dependencies[] = image
+dependencies[] = rules
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = field_first_name
+features[field_base][] = field_image
+features[field_base][] = field_last_name
+features[field_base][] = field_phone
+features[rules_config][] = rules_user_login_go_to_profile
