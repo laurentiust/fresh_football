@@ -7,9 +7,9 @@ function fresh_users_menu() {
   $items = array();
 
   $items['admin/config/settings/register-sms-message'] = array(
-    'title' => 'Edit the default registration sms message',
+    'title' => 'Edit sms messages',
     'page callback' => 'drupal_get_form',
-    'page arguments' => array('fresh_users_register_sms_message_edit_form'),
+    'page arguments' => array('fresh_users_sms_message_edit_form'),
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
@@ -20,13 +20,20 @@ function fresh_users_menu() {
 /**
  * Generate the sms greeting message form.
  */
-function fresh_users_register_sms_message_edit_form($form, $form_state) {
+function fresh_users_sms_message_edit_form($form, $form_state) {
   $form['sms_default_register'] = array(
     '#type' => 'textfield',
     '#required' => FALSE,
     '#description' => t('This will be the message sent on user registration'),
     '#title' => t('Default registration sms message'),
     '#default_value' => t(variable_get('default_freshbyte_sms')),
+  );
+  $form['sms_reminder_message'] = array(
+    '#type' => 'textfield',
+    '#required' => FALSE,
+    '#description' => t('This will be the message sent as the reminder so players bring the gear:D'),
+    '#title' => t('Reminder message'),
+    '#default_value' => t(variable_get('reminder_freshbyte_sms')),
   );
 
   $form['submit'] = array(
@@ -39,18 +46,22 @@ function fresh_users_register_sms_message_edit_form($form, $form_state) {
 /**
  * Validation for the sms greeting message.
  */
-function fresh_users_register_sms_message_edit_form_validate($form, &$form_state) {
+function fresh_users_sms_message_edit_form_validate($form, &$form_state) {
   if (!$form_state['values']['sms_default_register']) {
     form_set_error('sms_default_register', 'The greeting message can\'t be empty');
+  }
+  if (!$form_state['values']['sms_reminder_message']) {
+    form_set_error('sms_reminder_message', 'The reminder message can\'t be empty');
   }
 }
 
 /**
  * Custom submit for the sms greeting message form.
  */
-function fresh_users_register_sms_message_edit_form_submit($form, &$form_state) {
+function fresh_users_sms_message_edit_form_submit($form, &$form_state) {
   variable_set('default_freshbyte_sms', $form_state['values']['sms_default_register']);
-  drupal_set_message('The default sms greeting message has been set.');
+  variable_set('reminder_freshbyte_sms', $form_state['values']['reminder_freshbyte_sms']);
+  drupal_set_message('New settings applied.');
 }
 
 /**

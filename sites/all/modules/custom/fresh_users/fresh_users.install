@@ -18,3 +18,13 @@ function fresh_users_update_7002() {
   features_revert_module('fresh_users');
   drupal_set_message('END update ' . __FUNCTION__);
 }
+
+/**
+ * Add the default reminder message to the site.
+ */
+function fresh_users_update_7003() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  $reminder_freshbyte_sms = 'Thank you for registering on FRESH FOOTBALL :)';
+  variable_set('reminder_freshbyte_sms', $reminder_freshbyte_sms);
+  drupal_set_message('END update ' . __FUNCTION__);
+}
