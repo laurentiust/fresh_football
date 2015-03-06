@@ -57,31 +57,6 @@ function fresh_football_pages_default_page_manager_pages() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-5ffa142b-a192-47a1-beb2-5d656c7c33f3';
-    $pane->panel = 'center';
-    $pane->type = 'custom';
-    $pane->subtype = 'home_page_football_field_block';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => '',
-      'body' => '',
-      'format' => 'filtered_html',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '5ffa142b-a192-47a1-beb2-5d656c7c33f3';
-    $display->content['new-5ffa142b-a192-47a1-beb2-5d656c7c33f3'] = $pane;
-    $display->panels['center'][0] = 'new-5ffa142b-a192-47a1-beb2-5d656c7c33f3';
-    $pane = new stdClass();
     $pane->pid = 'new-e4554166-9d11-47cd-9c43-0077d3225642';
     $pane->panel = 'center';
     $pane->type = 'custom';
@@ -101,11 +76,11 @@ function fresh_football_pages_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = 'e4554166-9d11-47cd-9c43-0077d3225642';
     $display->content['new-e4554166-9d11-47cd-9c43-0077d3225642'] = $pane;
-    $display->panels['center'][1] = 'new-e4554166-9d11-47cd-9c43-0077d3225642';
+    $display->panels['center'][0] = 'new-e4554166-9d11-47cd-9c43-0077d3225642';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

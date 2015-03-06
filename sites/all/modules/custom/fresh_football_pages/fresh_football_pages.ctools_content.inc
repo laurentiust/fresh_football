@@ -20,10 +20,8 @@ function fresh_football_pages_default_ctools_custom_content() {
   $content->settings = array(
     'admin_title' => '',
     'title' => '',
-    'body' => '<?php
-echo \'this is some code\';
-?>',
-    'format' => 'php_code',
+    'body' => '',
+    'format' => 'full_html',
     'substitute' => 0,
   );
   $export['home_page_football_field_block'] = $content;
@@ -39,10 +37,15 @@ echo \'this is some code\';
     'admin_title' => '',
     'title' => '',
     'body' => '<?php
+print \'<p><a href="javascript:;" class="button login">Login</a></p>\';
+print \'<p><a href="javascript:;" class="button register">Register</a></p>\';
+print \'<p><a href="javascript:;" class="button forgot-password">Forgot password</a></p>\';
  $register_form = drupal_get_form(\'user_register_form\');
  $login_form = drupal_get_form(\'user_login\');
- print drupal_render($register_form);
- print drupal_render($login_form); 
+ $pass_form = drupal_get_form(\'fresh_football_pass_form\');
+print drupal_render($login_form); 
+print drupal_render($pass_form );
+print drupal_render($register_form); 
 ?>',
     'format' => 'php_code',
     'substitute' => 0,
