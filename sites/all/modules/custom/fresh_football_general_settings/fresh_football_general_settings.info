@@ -4,6 +4,7 @@ package = FreshFTBL
 dependencies[] = ctools
 dependencies[] = strongarm
 features[ctools][] = strongarm:strongarm:1
+features[fe_block_settings][] = system-main
 features[fe_block_settings][] = system-navigation
 features[fe_block_settings][] = system-powered-by
 features[fe_block_settings][] = user-login
