@@ -80,3 +80,12 @@ function fresh_football_update_7006() {
   module_enable(array('fresh_users'));
   drupal_set_message('Ends update ' . __FUNCTION__);
 }
+
+/**
+ * Revert features.
+ */
+function fresh_football_update_7007() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  features_revert_module('fresh_football_general_settings');
+  drupal_set_message('Ends update ' . __FUNCTION__);
+}
