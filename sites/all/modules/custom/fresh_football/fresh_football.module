@@ -1,5 +1,60 @@
 <?php
-/**
- * @file
- * Drupal needs this blank file.
- */
+function fresh_football_pass_form($form, $form_state) {
+  global $user;
+
+  $form['name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Username or e-mail address'),
+    '#size' => 60,
+    '#maxlength' => max(USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH),
+    '#required' => TRUE,
+    '#default_value' => isset($_GET['name']) ? $_GET['name'] : '',
+  );
+  // Allow logged in users to request this also.
+  if ($user->uid > 0) {
+    $form['name']['#type'] = 'value';
+    $form['name']['#value'] = $user->mail;
+    $form['mail'] = array(
+      '#prefix' => '<p>',
+      '#markup' =>  t('Password reset instructions will be mailed to %email. You must log out to use the password reset link in the e-mail.', array('%email' => $user->mail)),
+      '#suffix' => '</p>',
+    );
+  }
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array('#type' => 'submit', '#value' => t('E-mail new password'));
+
+  return $form;
+}
+
+function fresh_football_pass_form_validate($form, &$form_state) {
+  $name = trim($form_state['values']['name']);
+  // Try to load by email.
+  $users = user_load_multiple(array(), array('mail' => $name, 'status' => '1'));
+  $account = reset($users);
+  if (!$account) {
+    // No success, try to load by name.
+    $users = user_load_multiple(array(), array('name' => $name, 'status' => '1'));
+    $account = reset($users);
+  }
+  if (isset($account->uid)) {
+    form_set_value(array('#parents' => array('account')), $account, $form_state);
+  }
+  else {
+    form_set_error('name', t('Sorry, %name is not recognized as a user name or an e-mail address.', array('%name' => $name)));
+  }
+}
+
+function fresh_football_pass_form_submit($form, &$form_state) {
+  global $language;
+
+  $account = $form_state['values']['account'];
+  // Mail one time login URL and instructions using current language.
+  $mail = _user_mail_notify('password_reset', $account, $language);
+  if (!empty($mail)) {
+    watchdog('user', 'Password reset instructions mailed to %name at %email.', array('%name' => $account->name, '%email' => $account->mail));
+    drupal_set_message(t('Further instructions have been sent to your e-mail address.'));
+  }
+
+  $form_state['redirect'] = '<front>';
+  return;
+}
