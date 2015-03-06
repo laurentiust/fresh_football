@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * fres_users.rules_defaults.inc
+ * fresh_users.rules_defaults.inc
  */
 
 /**

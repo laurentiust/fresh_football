@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * fres_users.features.field_base.inc
+ * fresh_users.features.field_base.inc
  */
 
 /**
