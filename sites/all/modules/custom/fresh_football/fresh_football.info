@@ -15,5 +15,7 @@ dependencies[] = features
 dependencies[] = features_diff
 dependencies[] = strongarm
 dependencies[] = context
+dependencies[] = twilio
+dependencies[] = rules_admin
 dependencies[] = page_manager
 dependencies[] = admin_menu_toolbar

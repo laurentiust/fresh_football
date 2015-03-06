@@ -23,3 +23,7 @@ function fresh_football_enable() {
   // Clear all of the caches.
   drupal_flush_all_caches();
 }
+
+function fresh_football_update_7001() {
+  module_enable(array('twilio', 'rules_admin'));
+}
