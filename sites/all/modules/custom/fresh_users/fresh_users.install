@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * Add the default greeting message to the site.
+ */
+function fresh_users_update_7001() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  $default_freshbyte_sms = 'Thank you for registering on FRESH FOOTBALL :)';
+  variable_set('default_freshbyte_sms', $default_freshbyte_sms);
+  drupal_set_message('END update ' . __FUNCTION__);
+}

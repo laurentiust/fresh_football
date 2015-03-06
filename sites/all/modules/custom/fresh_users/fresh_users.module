@@ -1,24 +1,81 @@
 <?php
+
 /**
- * @author Andrei Rusu <andrei.rusu@freshbyteinc.com>.
+ * Implements hook_menu().
  */
+function fresh_users_menu() {
+  $items = array();
 
+  $items['admin/config/settings/register-sms-message'] = array(
+    'title' => 'Edit the default registration sms message',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('fresh_users_register_sms_message_edit_form'),
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  return $items;
+}
 
 /**
- * @param $form
- * @param $form_state
+ * Generate the sms greeting message form.
+ */
+function fresh_users_register_sms_message_edit_form($form, $form_state) {
+  $form['sms_default_register'] = array(
+    '#type' => 'textfield',
+    '#required' => FALSE,
+    '#description' => t('This will be the message sent on user registration'),
+    '#title' => t('Default registration sms message'),
+    '#default_value' => t(variable_get('default_freshbyte_sms')),
+  );
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+  );
+  return $form;
+}
+
+/**
+ * Validation for the sms greeting message.
+ */
+function fresh_users_register_sms_message_edit_form_validate($form, &$form_state) {
+  if (!$form_state['values']['sms_default_register']) {
+    form_set_error('sms_default_register', 'The greeting message can\'t be empty');
+  }
+}
+
+/**
+ * Custom submit for the sms greeting message form.
+ */
+function fresh_users_register_sms_message_edit_form_submit($form, &$form_state) {
+  variable_set('default_freshbyte_sms', $form_state['values']['sms_default_register']);
+  drupal_set_message('The default sms greeting message has been set.');
+}
+
+/**
+ * Add custom validation and submit handlers to the user register.
  */
 function fresh_users_form_user_register_form_alter(&$form, &$form_state) {
-    $form['#validate'][] = 'fresh_users_register_validate';
+  $form['#validate'][] = 'fresh_users_register_validate';
+  $form['#submit'][] = 'fresh_users_register_submit';
 }
 
 /**
  * Additional handler for user_register_form form validation.
  */
 function fresh_users_register_validate($form, &$form_state) {
+  if (!preg_match('/^[0-9]{10}$/', $form_state['values']['field_phone'][LANGUAGE_NONE][0]['value'])) {
+    form_set_error('field_phone', t('Phone is required and it must be of 10 digits'));
+  }
+}
 
-    if (!preg_match('/^[0-9]{10}$/', $form_state['values']['field_phone'][LANGUAGE_NONE][0]['value'])) {
-        form_set_error('field_phone', t('Phone is required and it must be of 10 digits'));
-    }
-
+/**
+ * Add custom functionality for the user registration.
+ */
+function fresh_users_register_submit($form, &$form_state) {
+  $default_freshbyte_sms = variable_get('default_freshbyte_sms');
+  twilio_send($form_state['values']['field_phone'][LANGUAGE_NONE][0]['value'], $default_freshbyte_sms, '40');
+  drupal_set_message('Thank you for registering. You will receive a confirmation message on the supplied phone number.');
+  drupal_goto('<front>');
 }
