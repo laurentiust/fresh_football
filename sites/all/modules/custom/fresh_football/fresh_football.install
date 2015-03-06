@@ -48,3 +48,13 @@ function fresh_football_update_7003() {
   module_enable(array('fresh_football_pages'));
   drupal_set_message('Ends update ' . __FUNCTION__);
 }
+
+/**
+ * Enable the features_extra_test module.
+ */
+function fresh_football_update_7004() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  module_enable(array('features_extra_test'));
+  features_revert_module('fresh_football_general_settings');
+  drupal_set_message('Ends update ' . __FUNCTION__);
+}
