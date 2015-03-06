@@ -128,8 +128,8 @@ function fresh_football_general_settings_default_fe_block_settings() {
         'weight' => 0,
       ),
       'fresh_football_theme' => array(
-        'region' => 'content',
-        'status' => 1,
+        'region' => '',
+        'status' => 0,
         'theme' => 'fresh_football_theme',
         'weight' => 1,
       ),

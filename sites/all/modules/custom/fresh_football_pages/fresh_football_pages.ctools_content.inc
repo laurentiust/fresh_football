@@ -28,5 +28,26 @@ echo \'this is some code\';
   );
   $export['home_page_football_field_block'] = $content;
 
+  $content = new stdClass();
+  $content->disabled = FALSE; /* Edit this to true to make a default content disabled initially */
+  $content->api_version = 1;
+  $content->name = 'login_and_register_home_page_block';
+  $content->admin_title = 'Login and register home page block';
+  $content->admin_description = '';
+  $content->category = '';
+  $content->settings = array(
+    'admin_title' => '',
+    'title' => '',
+    'body' => '<?php
+ $register_form = drupal_get_form(\'user_register_form\');
+ $login_form = drupal_get_form(\'user_login\');
+ print drupal_render($register_form);
+ print drupal_render($login_form); 
+?>',
+    'format' => 'php_code',
+    'substitute' => 0,
+  );
+  $export['login_and_register_home_page_block'] = $content;
+
   return $export;
 }
