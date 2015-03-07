@@ -23,6 +23,7 @@ dependencies[] = panels_mini
 dependencies[] = php
 dependencies[] = features_extra_test
 dependencies[] = jquery_update
+dependencies[] = football_event
 dependencies[] = admin_menu_toolbar
 dependencies[] = fresh_football_general_settings
 dependencies[] = fresh_football_pages

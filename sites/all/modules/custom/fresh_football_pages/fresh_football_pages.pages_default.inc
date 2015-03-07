@@ -62,7 +62,20 @@ function fresh_football_pages_default_page_manager_pages() {
     $pane->type = 'custom';
     $pane->subtype = 'login_and_register_home_page_block';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 2,
+            ),
+          ),
+          'context' => 'logged-in-user',
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'admin_title' => '',
       'title' => '',
@@ -81,7 +94,55 @@ function fresh_football_pages_default_page_manager_pages() {
     $pane->uuid = 'e4554166-9d11-47cd-9c43-0077d3225642';
     $display->content['new-e4554166-9d11-47cd-9c43-0077d3225642'] = $pane;
     $display->panels['center'][0] = 'new-e4554166-9d11-47cd-9c43-0077d3225642';
-  $display->hide_title = PANELS_TITLE_FIXED;
+    $pane = new stdClass();
+    $pane->pid = 'new-f445bfc4-34bb-45e7-a450-a63585e60690';
+    $pane->panel = 'center';
+    $pane->type = 'views';
+    $pane->subtype = 'football_events';
+    $pane->shown = TRUE;
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'role',
+          'settings' => array(
+            'rids' => array(
+              0 => 2,
+            ),
+          ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
+        ),
+      ),
+    );
+    $pane->configuration = array(
+      'override_pager_settings' => 0,
+      'use_pager' => 1,
+      'nodes_per_page' => '10',
+      'pager_id' => '0',
+      'offset' => '0',
+      'more_link' => 0,
+      'feed_icons' => 0,
+      'panel_args' => 0,
+      'link_to_view' => 0,
+      'args' => '',
+      'url' => '',
+      'display' => 'default',
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'f445bfc4-34bb-45e7-a450-a63585e60690';
+    $display->content['new-f445bfc4-34bb-45e7-a450-a63585e60690'] = $pane;
+    $display->panels['center'][1] = 'new-f445bfc4-34bb-45e7-a450-a63585e60690';
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;

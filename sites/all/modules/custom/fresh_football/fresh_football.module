@@ -15,7 +15,7 @@ function fresh_football_pass_form($form, $form_state) {
 
   $form['name'] = array(
     '#type' => 'textfield',
-    '#title' => t('Username or e-mail address'),
+    '#title' => t('E-mail address'),
     '#size' => 60,
     '#maxlength' => max(USERNAME_MAX_LENGTH, EMAIL_MAX_LENGTH),
     '#required' => TRUE,
@@ -92,5 +92,5 @@ function fresh_football_get_teams() {
   $teamCollection = new FootballEvent();
   $users = $teamCollection->getRegisteredUsers();
 
-  return json_encode($users);
+  print json_encode($users);
 }
