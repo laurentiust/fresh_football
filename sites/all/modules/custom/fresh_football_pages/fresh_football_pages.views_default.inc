@@ -32,6 +32,13 @@ function fresh_football_pages_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'fields';
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['label'] = '';
+  $handler->display->display_options['fields']['type']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -76,6 +83,12 @@ function fresh_football_pages_views_default_views() {
   $handler->display->display_options['fields']['field_stadium']['field'] = 'field_stadium';
   $handler->display->display_options['fields']['field_stadium']['label'] = 'Where';
   $handler->display->display_options['fields']['field_stadium']['element_label_colon'] = FALSE;
+  /* Field: Content: Join Football Event */
+  $handler->display->display_options['fields']['join_football_event']['id'] = 'join_football_event';
+  $handler->display->display_options['fields']['join_football_event']['table'] = 'node';
+  $handler->display->display_options['fields']['join_football_event']['field'] = 'join_football_event';
+  $handler->display->display_options['fields']['join_football_event']['label'] = 'Join';
+  $handler->display->display_options['fields']['join_football_event']['element_label_colon'] = FALSE;
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';

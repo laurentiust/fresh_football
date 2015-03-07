@@ -28,6 +28,7 @@ class football_event_handler_field_join extends views_handler_field {
    * Returns the form which replaces the placeholder from render().
    */
   function views_form(&$form, &$form_state) {
+    global $user;
     // The view is empty, abort.
     if (empty($this->view->result)) {
       return;
@@ -43,9 +44,16 @@ class football_event_handler_field_join extends views_handler_field {
       $node_type = $row->node_type;
 
       if ($node_type == 'football_event') {
+        if ($this->football_event_joined($nid, $user->uid)) {
+          $title = t('Leave');
+        }
+        else {
+          $title = t('Join');
+        }
+
         $form[$this->options['id']][$row_id] = array(
           '#type' => 'submit',
-          '#value' => t('Join'),
+          '#value' => $title,
           '#name' => 'join-event-' . $row_id,
           '#attributes' => array('class' => array('join-event')),
           '#nid' => $nid,
@@ -75,10 +83,32 @@ class football_event_handler_field_join extends views_handler_field {
         // add line item in wishlist
         $nid = $form[$field_name][$row_id]['#nid'];
         $node = node_load($nid);
-        $node->field_participants[LANGUAGE_NONE][]['target_id'] = $user->uid;
-        node_save($node);
 
-//        drupal_set_message(t('You successfully joined @event. Regards from Lica.', array('@event' => $node->title)));
+        if ($this->football_event_joined($nid, $user->uid)) {
+          foreach ($node->field_participants[LANGUAGE_NONE] as $index => $target) {
+            if ($target['target_id'] == $user->uid) {
+              unset($node->field_participants[LANGUAGE_NONE][$index]);
+              drupal_set_message(t('You successfully left event <em>@event</em>.', array('@event' => $node->title)));
+            }
+          }
+        }
+        else {
+          $node->field_participants[LANGUAGE_NONE][]['target_id'] = $user->uid;
+          drupal_set_message(t('You successfully joined event <em>@event</em>.', array('@event' => $node->title)));
+        }
+        node_save($node);
+      }
+    }
+  }
+
+  protected function football_event_joined($nid, $uid) {
+    $node = node_load($nid);
+
+    if (!empty($node->field_participants[LANGUAGE_NONE])) {
+      foreach ($node->field_participants[LANGUAGE_NONE] as $index => $target) {
+        if ($target['target_id'] == $uid) {
+          return TRUE;
+        }
       }
     }
   }
