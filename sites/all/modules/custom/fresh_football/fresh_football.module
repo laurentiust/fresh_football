@@ -92,5 +92,5 @@ function fresh_football_get_teams() {
   $teamCollection = new FootballEvent();
   $users = $teamCollection->getRegisteredUsers();
 
-  return json_encode($users);
+  print json_encode($users);
 }

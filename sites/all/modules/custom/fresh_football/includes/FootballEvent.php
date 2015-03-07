@@ -9,14 +9,10 @@ class FootballEvent {
    * @return array
    */
   public function getRegisteredUsers() {
-    $result = $this->buildQuery();
+    $results = $this->getEventUsers();
 
-
-    if (isset($result['user'])) {
-      $user_ids = array_keys($result['user']);
-      $users = entity_load('user', $user_ids);
-
-      return $this->buildResponse($this->generateTeams($users));
+    if (count($results)) {
+      return $this->buildResponse($this->generateTeams($results));
     }
 
     return array();
@@ -49,15 +45,31 @@ class FootballEvent {
   /**
    * @return mixed
    */
-  private function buildQuery() {
+  private function getEventUsers() {
+    $users = array();
     $query = new EntityFieldQuery();
+    $now = new DateTime($time='now', new DateTimeZone('UTC'));
 
-    $query->entityCondition('entity_type', 'user')
-      ->propertyCondition('uid', array('0', '1'), 'NOT IN')
+    $query->entityCondition('entity_type', 'node')
+      ->propertyCondition('type', 'football_event', '=')
       ->propertyCondition('status', '0', '<>')
-      ->range(0, 10);
+      ->fieldCondition('field_date_time', 'value', $now->format('Y-m-d h:m:s'), '>')
+      ->fieldOrderBy('field_date_time', 'value', 'ASC')
+      ->range(0, 1);
+      $result = $query->execute();
 
-    return $query->execute();
+    if (isset($result['node']) && count($result['node'])) {
+      $nodes = entity_load('node', array_keys($result['node']));
+      foreach ($nodes as $node) {
+        if (isset($node->field_participants[LANGUAGE_NONE]) && count($node->field_participants[LANGUAGE_NONE])) {
+          foreach ($node->field_participants[LANGUAGE_NONE] as $participantId) {
+            $users[] = user_load($participantId['target_id']);
+          }
+        }
+      }
+    }
+
+    return $users;
   }
 
   /**
@@ -66,7 +78,7 @@ class FootballEvent {
    */
   private function generateTeams($users) {
     $users = array_values($users);
-    //Knapsack algorithm
+    //Knapsack algorithm mixed with another algorithm
     $teams = $this->buildTeamsByRanking($users, 'field_skill');
     return $teams;
   }
@@ -143,7 +155,7 @@ class FootballEvent {
     $users = array_values($users);
     $playerNbr = count($users);
     if ($diff = $playerNbr % 2) {
-      $teams = $this->balanceOdd($users, $playerNbr, $diff);
+      $teams = $this->balanceOdd($users, $playerNbr);
     }
     else {
       $teams = $this->balanceEven($users, $playerNbr);
@@ -178,7 +190,12 @@ class FootballEvent {
     );
   }
 
-  protected function balanceOdd($users, $playerNbr, $diff) {
+  /**
+   * @param $users
+   * @param $playerNbr
+   * @return array
+   */
+  protected function balanceOdd($users, $playerNbr) {
     return $this->balanceEven($users, $playerNbr);
   }
 
@@ -247,7 +264,6 @@ class FootballEvent {
    */
   private function evenNumbers(&$bigTeam, &$smallTeam, $key, $approximate = FALSE, $force = FALSE) {
 
-    //TODO REMOVE FORCE - IS THIS NEEDED?
     if ($force) {
       $last = count($bigTeam) - 1;
       $bigTeam[] = $smallTeam[0];
