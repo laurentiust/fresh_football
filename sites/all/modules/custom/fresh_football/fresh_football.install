@@ -107,3 +107,12 @@ function fresh_football_update_7009() {
   module_enable(array('owlcarousel'));
   drupal_set_message('Ends update ' . __FUNCTION__);
 }
+
+/**
+ * Enable the owlcarousel module.
+ */
+function fresh_football_update_7010() {
+  drupal_set_message('Start update ' . __FUNCTION__);
+  module_enable(array('football_event'));
+  drupal_set_message('Ends update ' . __FUNCTION__);
+}
