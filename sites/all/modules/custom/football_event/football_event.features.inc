@@ -5,6 +5,13 @@
  */
 
 /**
+ * Implements hook_views_api().
+ */
+function football_event_views_api() {
+  return array("version" => "3.0");
+}
+
+/**
  * Implements hook_ctools_plugin_api().
  */
 function football_event_ctools_plugin_api($module = NULL, $api = NULL) {
