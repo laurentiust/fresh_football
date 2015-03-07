@@ -73,12 +73,27 @@ p.help-block,
 	margin: 0 0 64px;
 }
 
-#home-page form {
+#home-page form,
+.owl-controls {
 	width: 65%;
 	min-width: 240px;
 	max-width: 360px;
 	margin: 0 auto;
 	text-align: center;
+}
+
+.owl-controls {
+	overflow: hidden;
+}
+
+.owl-theme .owl-controls .owl-buttons div {
+	font-size: 1em;
+	background: none;
+	float: left;
+}
+
+.owl-theme .owl-controls .owl-buttons div.owl-next {
+	float: right;
 }
 
 .form-group {
