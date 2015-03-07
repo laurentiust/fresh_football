@@ -2,3 +2,346 @@
  * This file should get overwritten if Method 1 is used. If Method 2 is chosen,
  * remove this comment and start adding your styles to this file.
  */
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,700);
+
+
+body {
+	background: #507aa1;
+	color: #fff;
+	font-family: 'Roboto', Arial;
+	font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto', Arial;
+	font-weight: 300;
+}
+
+.navbar-collapse.collapse,
+.navbar-brand,
+.form-item label,
+#home-page .pane-content > p,
+p.help-block,
+.password-strength,
+.password-suggestions {
+	display: none !important;
+}
+
+.navbar-header {
+	float: none;
+	text-align: center;
+	padding-top: 40px;
+}
+
+.navbar-default {
+	background: transparent;
+	border: 0;
+}
+
+.navbar .logo {
+	float: none !important;
+	margin: auto;
+	padding: 0;
+}
+
+.page-header {
+	text-align: center;
+	border: 0;
+	text-transform: uppercase;
+	margin: 0 0 64px;
+}
+
+#home-page form {
+	width: 65%;
+	min-width: 240px;
+	max-width: 360px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.form-item {
+	margin: 0;
+}
+
+.form-item input {
+	background-color: transparent;
+	border: 0;
+	border-bottom: 1px solid #8faac3;
+	border-radius: 0;
+	box-shadow: none;
+	font-size: 1.2em;
+	color: #fff;
+	font-weight: 300;
+	padding: 10px 10px 10px 42px;
+	height: auto;
+}
+
+.form-control::-moz-placeholder {
+	color: #fff;
+}
+
+.form-item:first-child input {
+	border-top: 1px solid #8faac3;
+}
+
+button.btn {
+	border: 1px solid #fff;
+	border-radius: 0;
+	overflow: visible;
+	background: transparent;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	font-weight: 400;
+	color:  #fff;
+	line-height: 1em;
+	padding: 10px 20px;
+	margin: 44px auto 20px;
+}
+
+button.btn:hover {
+	background: #fff;
+	border-color: #fff;
+	color: #333;
+}
+
+.form-item-name input {
+	background-image: url(../images/icon-user.png);
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.form-item-pass input {
+	background-image: url(../images/icon-password.png);
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.form-item-mail input {
+	background-image: url(../images/icon-email.png);
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.confirm-parent,
+.password-parent {
+	width: auto;
+}
+
+input.password-confirm,
+input.password-field {
+	margin: 0;
+	width: 100%;
+}
+
+.fresh-football-field {
+	width: 65%;
+	min-width: 240px;
+	max-width: 360px;
+	margin: 0 auto;
+	/*background-color: #47a147;*/
+	border: 1px solid #fff;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	background: linear-gradient(
+		to bottom,
+		#47a147,
+		#47a147 50%,
+		#3e943e 50%,
+		#3e943e
+	);
+	background-size: 100% 9.1%;
+}
+
+.fresh-football-field:before,
+.fresh-football-field:after {
+	content: '';
+	position: absolute;
+	width: 30%;
+	height: 20%;
+	top: 50%;
+	left: 50%;
+	z-index: 100;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	margin: -15% 0 0 -15%;
+}
+
+.fresh-football-field:after {
+	width: 6px;
+	height: 6px;
+	margin: -3px 0 0 -3px;
+	background-color: #fff;
+}
+
+.field-side {
+	margin: 0 auto;
+	border: 1px solid #fff;
+	position: relative;
+}
+
+.field-side:before,
+.field-side:after {
+	content: '';
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	bottom: -5px;
+	left: -5px;
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
+
+.field-side:after {
+	left: auto;
+	right: -5px;
+}
+
+.field-side:first-child:after,
+.field-side:first-child:before {
+	bottom: auto;
+	top: -5px;
+}
+
+.penalty-area {
+	width: 60%;
+	height: 36%;
+	border: 1px solid #fff;
+	position: absolute;
+	bottom: -1px;
+	left: 50%;
+	margin-left: -30%;
+	/*background-color: #47a147;*/
+	background: linear-gradient(
+		to bottom,
+		#47a147,
+		#47a147 50%,
+		#3e943e 50%,
+		#3e943e
+	);
+	background-size: 100% 51%;
+	background-position: bottom;
+}
+
+.penalty-area:before {
+	content: '';
+	position: absolute;
+	width: 50%;
+	height: 110%;
+	top: -24%;
+	left: 25%;
+	z-index: -1;
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
+
+.field-side:first-child .penalty-area {
+	bottom: auto;
+	top: -1px;
+	background-position: top;
+}
+
+.field-side:first-child .penalty-area:before {
+	bottom: -24%;
+	top: auto;
+}
+
+.goal-area {
+	width: 30%;
+	height: 14%;
+	border: 1px solid #fff;
+	position: absolute;
+	bottom: -1px;
+	left: 50%;
+	margin-left: -15%;
+}
+
+.goal-area:before {
+	content: '';
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	top: -80%;
+	left: 50%;
+	z-index: 100;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	margin: -2px 0 0 -2px;
+	background-color: #fff;
+}
+
+.field-side:first-child .goal-area {
+	bottom: auto;
+	top: -1px;
+}
+
+.field-side:first-child .goal-area:before {
+	bottom: -80%;
+	top: auto;
+}
+
+.field-side ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.field-side li {
+	position: absolute;
+	z-index: 1000;
+	width: 100px;
+	text-align: center;
+}
+
+.field-side li a,
+.field-side li a span {
+	display: block;
+}
+
+.field-side li a span {
+	background-color: rgba(0,0,0,0.5);
+	color: #fff;
+	white-space1: nowrap;
+}
+
+.field-side li:nth-child(1) {
+	top: 62%;
+	left: 50%;
+	margin-left: -50px;
+}
+.field-side:first-child li:nth-child(1) {
+	top: 6%;
+}
+
+.field-side li:nth-child(2) {
+	top: 50%;
+	left: 4%;
+}
+.field-side:first-child li:nth-child(2) {
+	top: 18%;
+}
+
+.field-side li:nth-child(3) {
+	top: 50%;
+	right: 4%;
+}
+.field-side:first-child li:nth-child(3) {
+	top: 18%;
+}
+
+.field-side li:nth-child(4) {
+	top: 4%;
+	left: 18%;
+}
+.field-side:first-child li:nth-child(4) {
+	top: 64%;
+}
+
+.field-side li:nth-child(5) {
+	top: 4%;
+	right: 18%;
+}
+.field-side:first-child li:nth-child(5) {
+	top: 64%;
+}
