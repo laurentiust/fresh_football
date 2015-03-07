@@ -1,4 +1,13 @@
 <?php
+
+/**
+ * Implements hook_preprocess_html().
+ */
+function fresh_football_preprocess_html(&$variables) {
+  // Loading owl library on every pages
+  drupal_add_library('owlcarousel', 'owlcarousel', TRUE);
+}
+
 function fresh_football_pass_form($form, $form_state) {
   global $user;
 

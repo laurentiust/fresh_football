@@ -27,3 +27,4 @@ dependencies[] = admin_menu_toolbar
 dependencies[] = fresh_football_general_settings
 dependencies[] = fresh_football_pages
 dependencies[] = fresh_users
+dependencies[] = owlcarousel
