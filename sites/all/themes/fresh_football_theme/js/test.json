@@ -1,0 +1,28 @@
+{
+  "teams": [
+    [
+      {
+        "name": "firstName LastName",
+        "picture": null
+      },
+      {
+        "name": "firstName lastName",
+        "picture": null
+      },
+      {
+        "name": "dsa asd",
+        "picture": null
+      }
+    ],
+    [
+      {
+        "name": "asddas asdasd",
+        "picture": null
+      },
+      {
+        "name": "saffsg gssgsdgds",
+        "picture": null
+      }
+    ]
+  ]
+}
