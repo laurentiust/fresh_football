@@ -7,7 +7,7 @@
 /**
  * Implements hook_views_default_views().
  */
-function fresh_football_pages_views_default_views() {
+function football_event_views_default_views() {
   $export = array();
 
   $view = new view();
@@ -87,8 +87,12 @@ function fresh_football_pages_views_default_views() {
   $handler->display->display_options['fields']['join_football_event']['id'] = 'join_football_event';
   $handler->display->display_options['fields']['join_football_event']['table'] = 'node';
   $handler->display->display_options['fields']['join_football_event']['field'] = 'join_football_event';
-  $handler->display->display_options['fields']['join_football_event']['label'] = 'Join';
+  $handler->display->display_options['fields']['join_football_event']['label'] = '';
   $handler->display->display_options['fields']['join_football_event']['element_label_colon'] = FALSE;
+  /* Sort criterion: Content: Date/Time (field_date_time) */
+  $handler->display->display_options['sorts']['field_date_time_value']['id'] = 'field_date_time_value';
+  $handler->display->display_options['sorts']['field_date_time_value']['table'] = 'field_data_field_date_time';
+  $handler->display->display_options['sorts']['field_date_time_value']['field'] = 'field_date_time_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -103,9 +107,18 @@ function fresh_football_pages_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'football_event' => 'football_event',
   );
+  /* Filter criterion: Content: Date/Time (field_date_time) */
+  $handler->display->display_options['filters']['field_date_time_value_1']['id'] = 'field_date_time_value_1';
+  $handler->display->display_options['filters']['field_date_time_value_1']['table'] = 'field_data_field_date_time';
+  $handler->display->display_options['filters']['field_date_time_value_1']['field'] = 'field_date_time_value';
+  $handler->display->display_options['filters']['field_date_time_value_1']['operator'] = '>=';
+  $handler->display->display_options['filters']['field_date_time_value_1']['granularity'] = 'minute';
+  $handler->display->display_options['filters']['field_date_time_value_1']['form_type'] = 'date_popup';
+  $handler->display->display_options['filters']['field_date_time_value_1']['default_date'] = 'now';
 
   /* Display: List of events */
   $handler = $view->new_display('panel_pane', 'List of events', 'panel_pane_1');
+
   $export['football_events'] = $view;
 
   return $export;

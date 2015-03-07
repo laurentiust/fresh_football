@@ -68,11 +68,11 @@ function fresh_football_pages_default_page_manager_pages() {
           'name' => 'role',
           'settings' => array(
             'rids' => array(
-              0 => 2,
+              0 => 1,
             ),
           ),
           'context' => 'logged-in-user',
-          'not' => TRUE,
+          'not' => FALSE,
         ),
       ),
     );

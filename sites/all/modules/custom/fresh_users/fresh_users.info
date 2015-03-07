@@ -23,4 +23,3 @@ features[field_instance][] = user-user-field_last_name
 features[field_instance][] = user-user-field_phone
 features[field_instance][] = user-user-field_skill
 features[field_instance][] = user-user-field_title
-features[rules_config][] = rules_user_login_go_to_profile
