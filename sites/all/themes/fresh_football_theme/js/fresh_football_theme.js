@@ -41,8 +41,8 @@
 
 		function fetchData() {
 			$.ajax({
-				//url: '/api/get-teams',
-				url: '/sites/all/themes/fresh_football_theme/js/test.json',
+				url: '/api/get-teams',
+				//url: '/sites/all/themes/fresh_football_theme/js/test.json',
 				type: 'POST',
 				dataType: 'json',
 				contentType: 'application/json',
