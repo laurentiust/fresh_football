@@ -68,14 +68,25 @@ function fresh_users_sms_message_edit_form_submit($form, &$form_state) {
  * Add custom validation and submit handlers to the user register.
  */
 function fresh_users_form_user_register_form_alter(&$form, &$form_state) {
-  $form['#validate'][] = 'fresh_users_register_validate';
+  $form['account']['name']['#access'] = FALSE;
+  array_unshift($form['#validate'], 'fresh_users_register_validate');
   $form['#submit'][] = 'fresh_users_register_submit';
+}
+
+/**
+ * Alter the default user login form.
+ */
+function fresh_users_form_user_login_alter(&$form, &$form_state) {
+  $form['name']['#title'] = 'E-mail address ';
 }
 
 /**
  * Additional handler for user_register_form form validation.
  */
 function fresh_users_register_validate($form, &$form_state) {
+  if ($form_state['values']['mail']) {
+    $form_state['values']['name'] = $form_state['values']['mail'];
+  }
   if (!preg_match('/^[0-9]{10}$/', $form_state['values']['field_phone'][LANGUAGE_NONE][0]['value'])) {
     form_set_error('field_phone', t('Phone is required and it must be of 10 digits'));
   }
