@@ -22,7 +22,6 @@ function football_event_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Football events';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -39,50 +38,19 @@ function football_event_views_default_views() {
   $handler->display->display_options['fields']['type']['label'] = '';
   $handler->display->display_options['fields']['type']['exclude'] = TRUE;
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
-  $handler->display->display_options['fields']['body']['label'] = 'Description';
-  $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   /* Field: Content: Date/Time */
   $handler->display->display_options['fields']['field_date_time']['id'] = 'field_date_time';
   $handler->display->display_options['fields']['field_date_time']['table'] = 'field_data_field_date_time';
   $handler->display->display_options['fields']['field_date_time']['field'] = 'field_date_time';
-  $handler->display->display_options['fields']['field_date_time']['label'] = 'At what time';
+  $handler->display->display_options['fields']['field_date_time']['label'] = '';
   $handler->display->display_options['fields']['field_date_time']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_date_time']['settings'] = array(
-    'format_type' => 'medium',
+    'format_type' => 'football_event_long_date',
     'fromto' => 'both',
     'multiple_number' => '',
     'multiple_from' => '',
     'multiple_to' => '',
   );
-  /* Field: Content: Participants */
-  $handler->display->display_options['fields']['field_participants']['id'] = 'field_participants';
-  $handler->display->display_options['fields']['field_participants']['table'] = 'field_data_field_participants';
-  $handler->display->display_options['fields']['field_participants']['field'] = 'field_participants';
-  $handler->display->display_options['fields']['field_participants']['label'] = 'Who\'s going';
-  $handler->display->display_options['fields']['field_participants']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_participants']['settings'] = array(
-    'link' => 0,
-  );
-  $handler->display->display_options['fields']['field_participants']['delta_offset'] = '0';
-  /* Field: Content: Stadium */
-  $handler->display->display_options['fields']['field_stadium']['id'] = 'field_stadium';
-  $handler->display->display_options['fields']['field_stadium']['table'] = 'field_data_field_stadium';
-  $handler->display->display_options['fields']['field_stadium']['field'] = 'field_stadium';
-  $handler->display->display_options['fields']['field_stadium']['label'] = 'Where';
-  $handler->display->display_options['fields']['field_stadium']['element_label_colon'] = FALSE;
   /* Field: Content: Join Football Event */
   $handler->display->display_options['fields']['join_football_event']['id'] = 'join_football_event';
   $handler->display->display_options['fields']['join_football_event']['table'] = 'node';

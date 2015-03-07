@@ -14,3 +14,26 @@ function football_event_form_alter(&$form, &$form_state, $form_id) {
     unset($form['actions']);
   }
 }
+
+/**
+ * Implements hook_date_formats().
+ */
+function football_event_date_formats() {
+  return array(
+    // Creates a new format for a new, custom format type.
+    array(
+      'type' => 'football_event_long_date',
+      'format' => 'l, d F Y \a\t H:i',
+      'locales' => array(),
+    ),
+  );
+}
+
+/**
+ * Implements hook_date_format_types().
+ */
+function football_event_date_format_types() {
+  return array(
+    'football_event_long_date' => t('Football Long date'),
+  );
+}
