@@ -78,6 +78,14 @@ function fresh_users_form_user_register_form_alter(&$form, &$form_state) {
  */
 function fresh_users_form_user_login_alter(&$form, &$form_state) {
   $form['name']['#title'] = 'E-mail address ';
+  $form['#submit'][] = 'fresh_users_login_submit';
+}
+
+/**
+ * Fix the redirect after login.
+ */
+function fresh_users_login_submit(&$form, &$form_state) {
+  $form_state['redirect'] = 'home';
 }
 
 /**
