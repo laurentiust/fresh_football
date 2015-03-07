@@ -39,6 +39,20 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 300;
 }
 
+.alert {
+  font-size: 14px;
+  width: 362px;
+  margin: 10px auto;
+}
+.alert-success {
+  color: #FFFFFF;
+  background-color: #2F3B6B;
+  border-color: #5A688E;
+}
+.alert-success a {
+  color: #000000;
+}
+
 .navbar-collapse.collapse,
 .navbar-brand,
 .form-item label,
@@ -70,7 +84,7 @@ p.help-block,
 	text-align: center;
 	border: 0;
 	text-transform: uppercase;
-	margin: 0 0 64px;
+	margin: 0 0 25px;
 }
 
 #home-page form,
