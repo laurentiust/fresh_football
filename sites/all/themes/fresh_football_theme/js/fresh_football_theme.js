@@ -19,7 +19,7 @@
 		$(".owl").owlCarousel({
 			navigation : true,
 			singleItem: true,
-			slideSpeed: 200,
+			slideSpeed: 300,
 			addClassActive : true,
 			rewindNav : false,
 			pagination : false,
@@ -47,9 +47,9 @@
 				dataType: 'json',
 				contentType: 'application/json',
 			}).done( function(data) {
-				if ( data && data.teams ) {
-					renderPlayers( data.teams );
-				}
+				renderPlayers( data.teams || { "teams": [[], []] } );
+			}).fail( function() {
+				renderPlayers( [[], []] );
 			});
 		}
 
