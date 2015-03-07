@@ -1,5 +1,7 @@
 <?php
 
+require(drupal_get_path('module', 'fresh_football') . '/includes/FootballEvent.php');
+
 /**
  * Implements hook_preprocess_html().
  */
@@ -66,4 +68,29 @@ function fresh_football_pass_form_submit($form, &$form_state) {
 
   $form_state['redirect'] = '<front>';
   return;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function fresh_football_menu() {
+  $items['api/get-teams'] = array(
+    'title' => 'Custom page',
+    'page callback' => 'fresh_football_get_teams',
+    'access arguments' => array('access content'),
+  );
+
+  return $items;
+}
+
+/**
+ * api/get-teams callback
+ * @return string
+ */
+function fresh_football_get_teams() {
+
+  $teamCollection = new FootballEvent();
+  $users = $teamCollection->getRegisteredUsers();
+
+  return json_encode($users);
 }
