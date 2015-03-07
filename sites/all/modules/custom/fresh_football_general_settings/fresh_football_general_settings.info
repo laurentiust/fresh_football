@@ -15,6 +15,7 @@ features[variable][] = jquery_update_compression_type
 features[variable][] = jquery_update_jquery_admin_version
 features[variable][] = jquery_update_jquery_cdn
 features[variable][] = jquery_update_jquery_version
+features[variable][] = node_admin_theme
 features[variable][] = site_name
 features[variable][] = theme_default
 features[variable][] = theme_fresh_football_theme_settings

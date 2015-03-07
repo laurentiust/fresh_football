@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Football Event feature.
+ */
+
+include_once 'football_event.features.inc';
