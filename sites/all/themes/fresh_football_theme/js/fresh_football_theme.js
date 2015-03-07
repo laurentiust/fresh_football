@@ -2,19 +2,42 @@
 
 	$(document).ready(function() {
 		
+		var buttons = [
+				['', 'Back to login'],
+				['Forgot password?', 'Join us'],
+				['Back to login', '']
+			];
+
 		// add placeholder, because..... drupal
 		$('input.form-text').each( function() {
 			$(this).attr('placeholder', $(this).prev().text());
 		});
 
+		$('#fresh-football-pass-form').insertBefore( $('#user-login') );
 		$('#home-page form').wrapAll('<div class="owl" />');
 
 		$(".owl").owlCarousel({
 			navigation : true,
-			singleItem: true
+			singleItem: true,
+			slideSpeed: 200,
+			addClassActive : true,
+			rewindNav : false,
+			pagination : false,
+			afterMove: function() {
+				var id = $('.owl-item.active').find('form').attr('id');
+				var button_values = buttons[ $('.owl-item.active').index() ];
+				$('body')
+					.removeClass('fresh-football-pass user-register user-login')
+					.addClass( id.replace('-form', '') );
+				$('.owl-prev', '.owl-buttons').text( button_values[0] );
+				$('.owl-next', '.owl-buttons').text( button_values[1] );
+			} 
 		});
 
-		//var intervalID = setInterval(fetchData, 10000);
+		var owl = $(".owl").data('owlCarousel');
+		owl.jumpTo(1);
+
+		var intervalID = setInterval(fetchData, 60000);
 
 		function fetchData() {
 			$.ajax({
@@ -39,7 +62,6 @@
 				var $penalty_area = $('<div/>').addClass('penalty-area').appendTo( $field_side );
 				var $goal_area = $('<div/>').addClass('goal-area').appendTo( $field_side );
 				var $list = $('<ul/>').addClass('team-' + (i+1)).appendTo( $field_side );
-				//$.each(team, function(j,player) {
 				for (var i = 0; i < 5; i++) {
 					var player = team[i];
 					var photo = player ? (player.picture || 'sites/all/themes/fresh_football_theme/images/default-player.png') : 'sites/all/themes/fresh_football_theme/images/empty-slot.png';
@@ -50,7 +72,6 @@
 						var $name = $('<span/>').text(player.name).appendTo( $link );
 					}
 				}
-				//});
 				$field_side.height( $field_side.width() * 0.75 );
 			});
 		}
@@ -64,7 +85,6 @@
 				var now = +new Date,
 				args = arguments;
 				if (last && now < last + threshhold) {
-					// hold on to it
 					clearTimeout(deferTimer);
 					deferTimer = setTimeout(function () {
 						last = now;

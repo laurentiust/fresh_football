@@ -7,10 +7,31 @@
 
 
 body {
-	background: #507aa1;
+	background-color: #507aa1;
 	color: #fff;
 	font-family: 'Roboto', Arial;
 	font-weight: 300;
+	-webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
+}
+
+body.fresh-football-pass {
+	background-color: #ee8455;
+}
+
+body.user-register {
+	background-color: #6e8a43;
+}
+
+body.user-login {
+	background-color: #507aa1;
+}
+
+body.logged-in {
+	background-color: #192f53;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -60,6 +81,10 @@ p.help-block,
 	text-align: center;
 }
 
+.form-group {
+	margin: 0;
+}
+
 .form-item {
 	margin: 0;
 }
@@ -67,7 +92,7 @@ p.help-block,
 .form-item input {
 	background-color: transparent;
 	border: 0;
-	border-bottom: 1px solid #8faac3;
+	border-bottom: 1px solid rgba(255,255,255,0.36);
 	border-radius: 0;
 	box-shadow: none;
 	font-size: 1.2em;
@@ -77,12 +102,16 @@ p.help-block,
 	height: auto;
 }
 
+.form-item:first-child input {
+	border-top: 1px solid rgba(255,255,255,0.36);
+}
+
 .form-control::-moz-placeholder {
 	color: #fff;
 }
 
-.form-item:first-child input {
-	border-top: 1px solid #8faac3;
+.form-control::-webkit-input-placeholder {
+	color: #fff;
 }
 
 button.btn {
@@ -132,6 +161,10 @@ input.password-confirm,
 input.password-field {
 	margin: 0;
 	width: 100%;
+}
+
+.not-logged-in .fresh-football-field {
+	display: none;
 }
 
 .fresh-football-field {
@@ -344,4 +377,17 @@ input.password-field {
 }
 .field-side:first-child li:nth-child(5) {
 	top: 64%;
+}
+
+#views-form-football-events-default {
+	padding-top: 20px;
+}
+
+#views-form-football-events-default button.btn {
+	margin: 20px 0;
+}
+
+.owl-prev.disabled,
+.owl-next.disabled {
+	display: none !important;
 }
